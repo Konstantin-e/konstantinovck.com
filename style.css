@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 800px) {
- #background-wrap .chest {
+ .background-wrap .chest {
    width: 150px;
    height: 150px;
  }
@@ -20,13 +20,10 @@ body {
 	overflow-x: hidden;
 }
 
-.welcome {
-  width: 100%;
-}
-
-#background-wrap {
+.background-wrap {
   display: block;
   height: 100vh;
+  overflow: hidden;
   background: #00b4ff;
   bottom: 0;
 	left: 0;
@@ -34,6 +31,45 @@ body {
 	position: relative;
 	right: 0;
 	top: 0;
+}
+
+/** projects pop-up **/
+.grid-container-2 {
+  display: grid;
+  position:  absolute;
+  grid-template-columns: auto auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  left: 5%;
+  z-index: 6;
+  width: 90%;
+  height: 80%;
+  top: 10%;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+/* .projects {
+  display: none;
+  transition: display 2s ease-in;
+  background-color: orange !important;
+} */
+
+.grid-container-2:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.grid-container-2 > .grid-item:hover {
+  background-color: #57554462;
+}
+
+/** END projects pop-up **/
+
+.middle-1 {
+  background-color: #fafafa;
+  height: 100vh;
 }
 
 /*CLOUDS*/
@@ -132,7 +168,7 @@ body {
 /* OBJECTS */
 
 .cloud {
-  text-align: center;
+  /* text-align: center; */
 
 	background: #fff;
 	background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
@@ -189,10 +225,13 @@ body {
   
 }
 
+/*grid for clouds*/
+
 .grid-container {
+  position: relative;
   display: grid;
   grid-template-columns: auto auto auto;
-  /* background-color: #2196F3; */
+  /* background-color: yellow; */
   padding: 10px;
 }
 .grid-item {
@@ -201,6 +240,7 @@ body {
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  transition: background-color 0.5s;
 }
 
 /*CLOUDS END*/
@@ -273,6 +313,7 @@ p.thought {
   /* NAVIGATION */
 
   ul {
+    background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
     position: absolute;
     display: block;
@@ -297,7 +338,7 @@ p.thought {
   }
   
   li a:hover:not(.active) {
-    background-color: #111;
+    background-color: rgba(17, 17, 17, 0.37);
   }
   
   .active {
@@ -317,10 +358,28 @@ p.thought {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 3;
+  animation: shake 5s;
+  animation-iteration-count: infinite; 
+  animation-delay: 2s;
 }
 
 .chest:hover {
   background-image: url(img/chest_open.svg);
+  animation-play-state: paused;
+}
+
+.chest:hover + .grid-container-2 { /* on chest hover projects appear*/
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  /* nothing changes */
+  100% { transform: translate(-3px, 0px) rotate(1deg); }
 }
 
   /* CHEST END */
@@ -337,6 +396,47 @@ p.thought {
 
   /* MOUNTAINTS END */
 
+@keyframes mouse-animation {
+    0%   {background-image: url(img/mouse1.png)}
+    50% {background-image: url(img/mouse2.png)}
+    100%   {background-image: url(img/mouse1.png)}
+    
+}
+
+#mouse_container {
+    margin: 0;
+    padding-right: 40px;
+    transition: padding 0.5s;
+    /* display: inline-block; */
+    position: relative;
+    z-index: 6;
+    width: 60px;
+    height: 100px;
+    bottom: -150px;
+    /* margin-left: 20px; */
+    float: right;
+    /* background-color: blueviolet; */
+}
+
+#mouse_animation {
+   
+    cursor: pointer;
+    animation-name: mouse-animation;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    /* margin-left: 20px; */
+    /* background-color: rgba(255, 0, 0, 0.5); */
+    /* background-image: url(img/mouse.png); */
+    /* background-position-y: -105px; */
+    background-size: 30px;
+    height: 100%;
+    width: 30px;
+    background-repeat: no-repeat;
+}
+
+#mouse_container:hover {
+    padding-top: 15px;
+}
   
 
 
