@@ -1,20 +1,26 @@
+:root {
+  --cloud_color: white;
+  --containers_color: white;
+  --text_color: rgb(95, 95, 95);
+  --sky_color: #00b4ff;
+  --containers_secondary: #d1d1d15b;
+  --skills_color: rgba(255, 255, 255, 0.8);
+  --window_color: rgba(74, 219, 230, 0.527);
+
+}
+
 * {
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 800px) {
- .background-wrap .chest {
-   width: 150px;
-   height: 150px;
- }
-}
 
 body {
+
   position: relative;
   /* color: #333; */
-  color: rgb(95, 95, 95);
+  color: var(--text_color);
 	font: 100% Arial, Sans Serif;
-	
+	font-size: 20px; 
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
@@ -24,14 +30,15 @@ body {
   display: block;
   height: 100vh;
   overflow: hidden;
-  background: #00b4ff;
+  background: linear-gradient(var(--sky_color), white);
   bottom: 0;
 	left: 0;
 	padding-top: 50px;
-	position: relative;
+	position: fixed;
 	right: 0;
 	top: 0;
 }
+
 
 /** projects pop-up **/
 .grid-container-2 {
@@ -68,8 +75,55 @@ body {
 /** END projects pop-up **/
 
 .middle-1 {
-  background-color: #fafafa;
-  height: 100vh;
+  position: relative;
+  /* background-color: #fafafa; */
+  top: 100vh;
+  height: 200vh;
+  overflow: hidden;
+}
+
+.middle-2 {
+  border-top: 1px solid rgb(95, 95, 95);
+  position: relative;
+  /* background-color: pink; */
+  height:60vh;
+  top: 100vh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.middle-3 {
+  border-top: 1px solid rgb(95, 95, 95);
+  position: relative;
+  background-color: var(--containers_color);
+  height:100vh;
+  top: 100vh;
+  width: 100%;
+  padding-bottom: 20px;
+  height: auto;
+  overflow: hidden;
+  z-index: 0;
+}
+.middle-4 {
+  border-top: 1px solid rgb(95, 95, 95);
+  position: relative;
+  /* background-color: pink; */
+  height:100vh;
+  top: 100vh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#switch {
+  margin-top: 5px;
+  right: 10px;
+  z-index: 8;
+  position: relative;
+  height: 40px;
+  width: 75px;
+  cursor: pointer;
 }
 
 /*CLOUDS*/
@@ -102,7 +156,7 @@ body {
     }
 }
 
-/* ANIMATIONS */
+/* cloud ANIMATIONS */
 
 .x1 {
   font-size: 4em;
@@ -165,18 +219,12 @@ body {
 }
 
 
-/* OBJECTS */
+/* -----------------clounds */
 
 .cloud {
   /* text-align: center; */
 
-	background: #fff;
-	background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#fff), color-stop(100%,#f1f1f1));
-	background: -webkit-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -o-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: -ms-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
-	background: linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+	background: var(--cloud_color);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
 	
 	-webkit-border-radius: 100px;
@@ -193,7 +241,7 @@ body {
 }
 
 .cloud:after, .cloud:before {
-  background: #fff;
+  background: var(--cloud_color);
 	content: '';
 	position: absolute;
 	z-indeX: -1;
@@ -208,6 +256,11 @@ body {
 	top: -50px;
 	width: 100px;
 }
+
+/* .nightCloud, .nightCloud:after, .nightCloud:before {
+  background: rgb(128, 108, 165);
+} */
+
 
 .cloud:before {
 	-webkit-border-radius: 200px;
@@ -243,9 +296,9 @@ body {
   transition: background-color 0.5s;
 }
 
-/*CLOUDS END*/
+/*END -----------------CLOUDS*/
 
-/****** THOUGHT BUBBLE *****/
+/*-----------------THOUGHT BUBBLE *****/
 
 p.thought {
   position: absolute;; /*see the support section below for more info*/
@@ -308,28 +361,37 @@ p.thought {
   box-shadow: -3px 3px 8px #989898;
   }
 
-  /*END THOUGHT BUBBLE*/
+  /*END -----------------THOUGHT BUBBLE*/
 
-  /* NAVIGATION */
+  /* -----------------NAVIGATION */
 
-  ul {
+  nav {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    
+  }
+
+  .navigation {
+    
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
-    position: absolute;
+    position: fixed;
     display: block;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    z-index: 2;
+    /* overflow: hidden; */
+    z-index: 10;
+    transition: top 0.3s;
     /* background-color: #333; */
   }
   
-  li {
+  .navigation a {
     float: left;
   }
   
-  li a {
+  .navigation a  {
     display: block;
     color: white;
     text-align: center;
@@ -337,7 +399,7 @@ p.thought {
     text-decoration: none;
   }
   
-  li a:hover:not(.active) {
+  .navigation a:hover:not(.active) {
     background-color: rgba(17, 17, 17, 0.37);
   }
   
@@ -345,9 +407,13 @@ p.thought {
     background-color: #4CAF50;
   }
 
-  /* END NAVIGATION */
+  .navigation .icon {
+    display: none;
+  }
 
-  /* CHEST */
+  /* END -----------------NAVIGATION */
+
+  /* -----------------CHEST */
 .chest {
   width: 200px;
   height: 200px;
@@ -382,9 +448,9 @@ p.thought {
   100% { transform: translate(-3px, 0px) rotate(1deg); }
 }
 
-  /* CHEST END */
+  /*END----------------- CHEST */
 
-  /* MOUNTAINTS */
+  /* -----------------MOUNTAINTS */
 
 .mountains {
   width: 100%;
@@ -394,7 +460,7 @@ p.thought {
 }
 
 
-  /* MOUNTAINTS END */
+  /*END ----------------- MOUNTAINTS */
 
 @keyframes mouse-animation {
     0%   {background-image: url(img/mouse1.png)}
@@ -403,29 +469,34 @@ p.thought {
     
 }
 
+/* -----------------mouse animation */
+
 #mouse_container {
     margin: 0;
     padding-right: 40px;
     transition: padding 0.5s;
     /* display: inline-block; */
-    position: relative;
+    position: absolute;
     z-index: 6;
     width: 60px;
     height: 100px;
-    bottom: -150px;
+    right: 0;
+
+    top: 80vh;
+    /* bottom: 0px; */
     /* margin-left: 20px; */
-    float: right;
+    /* float: right; */
     /* background-color: blueviolet; */
 }
 
 #mouse_animation {
    
     cursor: pointer;
+    /* background-image: url(img/mouse1.png); */
     animation-name: mouse-animation;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
     /* margin-left: 20px; */
-    /* background-color: rgba(255, 0, 0, 0.5); */
     /* background-image: url(img/mouse.png); */
     /* background-position-y: -105px; */
     background-size: 30px;
@@ -438,5 +509,325 @@ p.thought {
     padding-top: 15px;
 }
   
+/*end -----------------mouse animation */
+
+/* -----------------front-page */
+
+.front-page {
+  font-size: 50px ;
+  border-radius: 20px;
+  padding: 20px;
+  top: 15%;
+  width: 70%;
+  height: 70%;
+  left: 15%;;
+  position: absolute;
+  z-index: 6;
+  /* background-color: #ecececcb; */
+}
+
+/*END -----------------front-page */
+
+/* -----------------face */
+.face {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  left: 50%;
+  margin-left: -100px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 6;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #ecececcb;
+  background-image: url(img/face_no_bg.png);
+}
+
+/* end -----------------face */
+
+/* -----------------text */
+.text {
+  box-shadow: 5px 10px 18px #888888cc;
+  border-radius: 20px 20px 0 0;
+  /* color: rgb(95, 95, 95); */
+  background-color: var(--containers_secondary);
+  font-size: 20px;
+  padding: 40px 100px;
+  text-align: center;
+  /* column-count: 2; */
+  column-gap: 40px;
+  width: 70%;
+  left: 15%;
+  position: relative;
+  z-index: 2;
+}
+
+/*END ----------------- text */
+
+/* -----------------Windows */
+.window-border {
+  margin-top: 40px ;
+  /* margin-bottom: 4000px ; */
+  position: relative;
+  left: 50%;
+  margin-left: -1675px;
+  height: 200px;
+  box-sizing: content-box;
+  width: 350px;
+  border-width: 1000px 1500px 100px 1500px;
+  border-style: solid;
+  border-color: var(--containers_color);
+  top: -1000px;
+  z-index: 0;
+} 
+
+.wall {
+  padding: 10px;
+  height: 100px;
+  background-color: var(--containers_color);
+  /* border: 1px solid rgba(0, 0, 0, 0.8); */
+}
+
+.window {
+  /* box-sizing: content-box;
+  border: 200px solid white; */
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  z-index: 1;
+  /* right: -100px; */
+  /* top: -500px; */
+  display: grid;
+  grid-template-columns: auto auto auto auto auto ;
+}
+
+.frame-cell {
+  padding: 10px;
+  height: 100px;
+  background-color: var(--window_color);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+
+}
+/* END -----------------windows*/
+
+/* -----------------skills*/
+
+.skills-box {
+  position: relative;
+  /* background-color: white; */
+  height: 80vh;
+  top: -1075px ;
+  width: 100%;
+  overflow: hidden;
+  z-index: 6;
+} 
+
+.skills {
+  /* overflow: visible; */
+  /* top: -100px; */
+  left: 15%;
+  width: 70%;
+  height: 80%;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* background-color: yellow; */
+  padding: 10px;
+}
+.skill{
+  height: 500px;
+  background-color: var(--skills_color);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  /* font-size: 30px; */
+  text-align: center;
+  /* transition: background-color 0.5s; */
+}
+
+.skill div { /*text below icons*/
+  padding-top: 30px;
+}
+
+.skill:first-child {
+  border-radius: 20px 0 0 0;
+  /* background-color: purple; */
+}
+
+.skill:last-child {
+  border-radius: 0 20px 0 0;
+  /* background-color: purple; */
+}
+
+/* END -----------------skills*/
+
+/* -----------------work*/
+
+.work {
+  margin-top: 40px ;
+  /* background-color: #00b4ff; */
+  text-align: center;
+}
+
+.projects {
+  width: 70%;
+  left: 15%;
+  display: grid;
+  position: relative;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  gap: 10px;
+}
+
+.project {
+  height: 230px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+}
+
+.my-button {
+  cursor: pointer;
+  background-color: var(--sky_color);
+  color: white;
+  position: relative;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--sky_color);
+  border-radius: 20px;
+  left: 50%;
+  bottom: 0;
+  margin-top: 40px;
+  margin-left: -125px;
+  width: 250px;
+  transition: background-color 0.5s, color 0.5s linear;
+}
+
+.my-button:hover {
+  background-color: rgba(255, 255, 255, 0.767);
+  color: var(--sky_color);
+}
+
+.my-button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.my-button a:active {
+  color: var(--sky_color);
+}
+.my-button a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* END-----------------work*/
+
+/* ------------footer*/
+
+footer {
+  color: white;
+  height: 60vh;
+  text-align: center;
+  bottom: -100vh;
+  background-color: #8b8b8bab;
+  position: relative;
+}
+
+.contact {
+  color: var(--text_color);
+  border-radius: 20px;
+  padding-top: 50px;
+  background-color: var(--containers_color);
+  width: 70%;
+  position: relative;
+  height: 200px;
+  top: -100px;
+  left: 15%;
+  padding: 20px;
+}
+
+/* END------------footer*/
 
 
+
+/* @ MEDIA ------------*/
+
+@media screen and (max-width: 800px) {
+ 
+  /* .two-column {
+    column-count: 1 ;
+  } */
+ 
+  .middle-1 {
+    height: 2700px ;
+  }
+/*  
+  .window-border {
+     top: -225px ;
+  } */
+ 
+   .text {
+     padding: 20px ;
+     text-align: justify;
+   }
+ 
+   .skills {
+     grid-template-columns: auto ;
+   }
+ 
+   .skills-box {
+     height: 1600px;
+   }
+
+   .skill:first-child {
+    border-radius: 20px 20px 0 0;
+    /* background-color: purple; */
+  }
+  
+  .skill:last-child {
+    border-radius: 0 0 0 0;
+
+    /* background-color: purple;  */
+  }
+
+  .projects {
+    width: 70%;
+    left: 15%;
+    display: grid;
+    position: relative;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .project {
+    height: 20vh;
+  }
+ }
+
+ @media screen and (max-width: 600px) {
+
+  .navigation a:not(:first-child) {display: none;}
+  .navigation a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navigation.responsive {position: relative;}
+  .navigation.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navigation.responsive a {
+    float: none !important;
+    display: block;
+    text-align: left;
+  }
+}
