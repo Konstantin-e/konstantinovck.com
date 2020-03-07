@@ -1,3 +1,3 @@
 # http://konstantinovck.com
 
-![Background clouds in night mode]("https://raw.githubusercontent.com/Konstantin-e/konstantinovck.com/master/img/screenshot.png")
+![Background clouds in night mode](img/screenshot.png)
