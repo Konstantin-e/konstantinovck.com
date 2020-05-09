@@ -1,4 +1,28 @@
+const projectDescription = [
+  'A web player with custom design built with React. The songs can be loaded by adding\
+    new url addresses to the corresponding file',
+  'A website/blog/e-commerce shop for travelers and bird watchers made with Wordpress', 
+  'A sandbox game where you can build a pixelated landscape by adding different elements. \
+    Built with Vanilla Javascript.', 
+  'A React module app that translates entered word by going through Yandex API.', 
+  'My attempt to recreate the design of a certian website.', 
+  'An attempt to recreate the design of a certain website.'];
+
+const urls = [
+  'https://github.com/Konstantin-e/my_music_website',
+  'http://curiousfalcon.com',
+  'https://github.com/Konstantin-e/God-Mode-Game',
+  'https://github.com/Konstantin-e/Translate-me',
+  'https://github.com/Konstantin-e/toronto_zoo',
+  'https://github.com/Konstantin-e/project_2'
+]
+
 let isNight = false;
+const descriptionDiv = document.getElementById('description');
+const projectImg = document.getElementsByClassName('project-img');
+const projects = document.getElementsByClassName('project');
+const body = document.getElementsByTagName('body')[0];
+const descriptions = document.getElementsByClassName('description');
 
 
 
@@ -82,8 +106,6 @@ function myFunction() {
   }
 }
 
-
-
 // SCREEN SLIDE --------------------------
 
 $(document).ready(function(){
@@ -99,4 +121,33 @@ $(document).ready(function(){
     }
   });
 });
+
+
+// PROJECT HOVER --------------------------
+
+  for (let i = 0; i < projectImg.length; i++) {
+    projectImg[i].addEventListener('mouseover', () => {
+      if (window.innerWidth >= 800) {
+        descriptionDiv.setAttribute("style", "display: block");
+        descriptionDiv.innerHTML = projectDescription[i] + `<a href=${urls[i]} target="_blank"><div style="bottom: 0;" class="my-button">More</div></a>`;
+      } else {
+        projectImg[i].setAttribute("style", "display: none");
+        descriptions[i].setAttribute("style", "display: block");
+        descriptions[i].innerHTML = projectDescription[i] + `<a href=${urls[i]} target="_blank"><div style="bottom: 0;" class="my-button">More</div></a>`;
+
+        projects[i].addEventListener("mouseleave", () => {
+          projectImg[i].setAttribute("style", "display: block");
+          descriptions[i].setAttribute("style", "display: none");
+          descriptions[i].innerHTML = "";
+        })
+      }
+
+      
+    })
+  }
+
+descriptionDiv.addEventListener("mouseleave", () => {
+  descriptionDiv.setAttribute("style", "display: none");
+})
+
 
